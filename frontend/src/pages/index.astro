@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Tracks from "../components/Tracks.astro";
+import Gallery from "../components/Gallery.astro";
+import SedeMap from "../components/SedeMap";
+import RegistrationZone from "../components/RegistrationZone";
+import "../styles/global.css";
+---
+
+<Layout>
+  <main>
+    <Hero />
+
+    <div class="line-manantial w-full max-w-6xl mx-auto"></div>
+
+    <Tracks />
+
+    <Gallery />
+
+    <div class="line-manantial w-full max-w-6xl mx-auto"></div>
+
+    <SedeMap client:visible />
+
+    <div class="line-manantial w-full max-w-6xl mx-auto"></div>
+
+    <RegistrationZone client:visible />
+
+    <!-- Footer mínimo -->
+    <footer class="px-6 py-12 text-center border-t border-raiz/50">
+      <p class="text-musgo text-xs font-product tracking-wider">
+        AMANAL // 2026 — Protocolo de Innovación Abierta para Chapultepec
+      </p>
+      <p class="text-raiz text-xs font-product mt-2">
+        Complejo Cultural de Los Pinos, Sección I — CDMX
+      </p>
+    </footer>
+  </main>
+</Layout>

@@ -1,0 +1,103 @@
+---
+/**
+ * SECCIÓN 2 — Los Tres Tracks
+ * Layout asimétrico / Bento Grid
+ */
+
+const tracks = [
+  {
+    id: "manantiales-de-datos",
+    title: "Manantiales de Datos",
+    focus: "Eco-monitoreo e Infraestructura Hídrica",
+    description:
+      "Optimización del ciclo del agua en el bosque, detección temprana de incendios forestales y mapeo analítico de la biodiversidad en las cuatro secciones mediante arquitecturas de datos abiertos y sensores IoT.",
+    tag: "Track 01",
+  },
+  {
+    id: "el-gran-acueducto",
+    title: "El Gran Acueducto",
+    focus: "Movilidad e Interconectividad Sustentable",
+    description:
+      "Soluciones de software orientadas a mitigar el impacto ambiental del flujo peatonal, mejorar la accesibilidad universal y diseñar algoritmos de distribución y transporte limpio que conecten la infraestructura histórica con la nueva Cuarta Sección.",
+    tag: "Track 02",
+  },
+  {
+    id: "memorias-del-ahuehuete",
+    title: "Memorias del Ahuehuete",
+    focus: "Cultura y Patrimonio Digitalizado",
+    description:
+      "Desarrollo de plataformas web inmersivas, herramientas de realidad aumentada o repositorios interactivos que rescaten, preserven y democraticen la memoria histórica, arqueológica y artística del circuito de museos de Chapultepec.",
+    tag: "Track 03",
+  },
+];
+---
+
+<section id="tracks" class="relative px-6 py-24 md:py-32">
+  <div class="max-w-6xl mx-auto">
+    <!-- Encabezado de sección -->
+    <div class="mb-16">
+      <p class="text-manantial text-xs tracking-[0.35em] uppercase font-product mb-4">
+        Verticales de Innovación
+      </p>
+      <h2 class="font-makes font-bold text-4xl sm:text-5xl md:text-6xl text-niebla leading-[0.95]">
+        Tres Flujos.<br />
+        <span class="text-musgo">Un Ecosistema.</span>
+      </h2>
+    </div>
+
+    <!-- Bento Grid de Tracks -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <!-- Track 1 — ocupa más espacio -->
+      <div class="md:col-span-7 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500">
+        <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+          {tracks[0].tag}
+        </span>
+        <h3 class="font-makes font-bold text-2xl md:text-3xl text-niebla mt-4 mb-2">
+          {tracks[0].title}
+        </h3>
+        <p class="text-resina text-sm font-product font-medium mb-4">
+          {tracks[0].focus}
+        </p>
+        <p class="text-musgo font-product text-sm leading-relaxed">
+          {tracks[0].description}
+        </p>
+      </div>
+
+      <!-- Track 2 — más compacto -->
+      <div class="md:col-span-5 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500">
+        <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+          {tracks[1].tag}
+        </span>
+        <h3 class="font-makes font-bold text-2xl md:text-3xl text-niebla mt-4 mb-2">
+          {tracks[1].title}
+        </h3>
+        <p class="text-resina text-sm font-product font-medium mb-4">
+          {tracks[1].focus}
+        </p>
+        <p class="text-musgo font-product text-sm leading-relaxed">
+          {tracks[1].description}
+        </p>
+      </div>
+
+      <!-- Track 3 — ancho completo -->
+      <div class="md:col-span-12 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500">
+        <div class="md:flex md:items-start md:gap-12">
+          <div class="md:flex-1">
+            <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+              {tracks[2].tag}
+            </span>
+            <h3 class="font-makes font-bold text-2xl md:text-3xl text-niebla mt-4 mb-2">
+              {tracks[2].title}
+            </h3>
+            <p class="text-resina text-sm font-product font-medium mb-4 md:mb-0">
+              {tracks[2].focus}
+            </p>
+          </div>
+          <p class="text-musgo font-product text-sm leading-relaxed md:flex-1">
+            {tracks[2].description}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

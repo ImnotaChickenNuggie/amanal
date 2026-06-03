@@ -1,0 +1,65 @@
+---
+/**
+ * Galería Multimedia — Bento Grid
+ * Filtro grayscale inicial, cobra vida al hover
+ * Las imágenes se colocan en public/gallery/
+ */
+
+const images = [
+  {
+    src: "/gallery/carcamo-dolores.webp",
+    alt: "Cárcamo de Dolores — mural subacuático de Diego Rivera",
+    span: "md:col-span-7 md:row-span-2",
+  },
+  {
+    src: "/gallery/banos-moctezuma.webp",
+    alt: "Baños de Moctezuma — vestigios del manantial original",
+    span: "md:col-span-5",
+  },
+  {
+    src: "/gallery/los-pinos.webp",
+    alt: "Complejo Cultural de Los Pinos — sede del hackathon",
+    span: "md:col-span-5",
+  },
+  {
+    src: "/gallery/ahuehuetes.webp",
+    alt: "Ahuehuetes centenarios del Bosque de Chapultepec",
+    span: "md:col-span-12",
+  },
+];
+---
+
+<section id="galeria" class="relative px-6 py-24 md:py-32">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-12">
+      <p class="text-manantial text-xs tracking-[0.35em] uppercase font-product mb-4">
+        Registro Visual
+      </p>
+      <h2 class="font-makes font-bold text-3xl sm:text-4xl text-niebla">
+        Chapultepec en Fragmentos
+      </h2>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+      {
+        images.map((img) => (
+          <div
+            class={`${img.span} relative rounded-xl overflow-hidden group min-h-[220px] md:min-h-[260px]`}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              class="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-500 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-abismo/70 via-transparent to-transparent opacity-100 group-hover:opacity-60 transition-opacity duration-500" />
+            <p class="absolute bottom-4 left-4 right-4 text-xs text-niebla/70 font-product group-hover:text-niebla transition-colors duration-500">
+              {img.alt}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

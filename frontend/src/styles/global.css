@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   Tipografias — Manantial Nocturno
+   ══════════════════════════════════════════ */
+
+/* Makes — Titulos */
+@font-face {
+  font-family: "Makes";
+  src: url("/fonts/Makes.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Product Sans — Cuerpo */
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/Product Sans Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/Product Sans Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ══════════════════════════════════════════
+   Tokens CSS — Paleta "Manantial Nocturno"
+   ══════════════════════════════════════════ */
+
+:root {
+  --bg-abismo: #0a0d0f;
+  --bg-obsidiana: #131a1e;
+  --bg-corteza: #1c2428;
+  --border-raiz: #2a3338;
+  --text-niebla: #e2ded6;
+  --text-musgo: #8a9a8e;
+  --accent-manantial: #5ec4b6;
+  --accent-reflejo: #7dd8cc;
+  --accent-resina: #c4a24e;
+  --accent-fuego: #d45a3a;
+}
+
+/* ══════════════════════════════════════════
+   Base
+   ══════════════════════════════════════════ */
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-abismo text-niebla font-product antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-makes tracking-tight;
+  }
+
+  ::selection {
+    background: rgba(94, 196, 182, 0.25);
+    color: var(--text-niebla);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-abismo);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-raiz);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-musgo);
+  }
+
+  /* shadcn tokens mapeados a la paleta Manantial Nocturno */
+  :root {
+    --background: #0a0d0f;
+    --foreground: #e2ded6;
+    --card: #131a1e;
+    --card-foreground: #e2ded6;
+    --popover: #131a1e;
+    --popover-foreground: #e2ded6;
+    --primary: #5ec4b6;
+    --primary-foreground: #0a0d0f;
+    --secondary: #1c2428;
+    --secondary-foreground: #e2ded6;
+    --muted: #1c2428;
+    --muted-foreground: #8a9a8e;
+    --accent: #c4a24e;
+    --accent-foreground: #0a0d0f;
+    --destructive: #d45a3a;
+    --border: #2a3338;
+    --input: #2a3338;
+    --ring: #5ec4b6;
+    --radius: 0.75rem;
+  }
+
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+  .maplibregl-popup-content {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+  .maplibregl-popup-tip {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Utilities
+   ══════════════════════════════════════════ */
+
+@layer components {
+  .glass {
+    background: rgba(19, 26, 30, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-raiz);
+  }
+
+  .glass-elevated {
+    background: rgba(28, 36, 40, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-raiz);
+  }
+
+  .text-gradient-manantial {
+    background: linear-gradient(135deg, var(--accent-manantial), var(--accent-reflejo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-resina {
+    background: linear-gradient(135deg, var(--accent-resina), #d4b85e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .line-manantial {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-manantial), transparent);
+  }
+}
