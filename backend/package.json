@@ -1,0 +1,9 @@
+{
+  "name": "amanal-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/app.js",
+    "start": "node src/app.js"
+  }
+}

@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+.astro/
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/migrations/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.windsurf/
+.idea/
+*.swp
+*.swo
+
+# Claude
+claude.md
+CLAUDE.md
+.claude/
+.agents/
+skills-lock.json
+
+# Husky
+.husky/
