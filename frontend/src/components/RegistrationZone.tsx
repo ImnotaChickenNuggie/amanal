@@ -7,7 +7,7 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import { Select } from "@/components/ui/select";
 
 const INITIAL_SECONDS = 5 * 60;
-const API_URL = "http://localhost:3000/api/v1";
+const API_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:3000/api/v1";
 
 const SECTIONS = [
   { value: "manantiales-de-datos", label: "Manantiales de Datos — Eco-monitoreo" },

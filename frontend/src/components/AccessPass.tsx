@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PassCard from "./PassCard";
 
-const API_URL = "http://localhost:3000/api/v1";
+const API_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:3000/api/v1";
 const HACKATHON_START = new Date("2026-08-14T09:00:00-06:00");
 
 type PageState = "search" | "loading" | "reveal" | "pass" | "not-found" | "error";
