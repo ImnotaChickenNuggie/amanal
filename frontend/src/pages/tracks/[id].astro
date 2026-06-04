@@ -1,0 +1,122 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { tracks } from "../../data/tracks";
+import "../../styles/global.css";
+
+export function getStaticPaths() {
+  return tracks.map((track) => ({
+    params: { id: track.id },
+    props: { track },
+  }));
+}
+
+const { track } = Astro.props;
+---
+
+<Layout title={`${track.title} — AMANAL 2026`}>
+  <main class="min-h-screen pt-24 pb-16">
+    <!-- Card expandida — misma transition:name que la card original -->
+    <div
+      class="max-w-5xl mx-auto px-6"
+      style={`view-transition-name: track-${track.id}`}
+    >
+      <!-- Header -->
+      <div class="mb-12">
+        <a
+          href="/#tracks"
+          class="inline-flex items-center gap-2 text-musgo hover:text-manantial text-xs font-mono tracking-widest uppercase transition-colors duration-200 mb-8 group"
+        >
+          <span class="group-hover:-translate-x-1 transition-transform duration-200">←</span>
+          Volver a Tracks
+        </a>
+
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+            {track.tag}
+          </span>
+          <span class="h-px flex-1 bg-raiz"></span>
+        </div>
+
+        <h1
+          class="font-makes font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-niebla leading-[0.95] mb-4"
+          style={`view-transition-name: track-title-${track.id}`}
+        >
+          {track.title}
+        </h1>
+
+        <p
+          class="text-resina text-lg sm:text-xl font-product font-medium"
+          style={`view-transition-name: track-focus-${track.id}`}
+        >
+          {track.focus}
+        </p>
+      </div>
+
+      <!-- Content grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Narrativa — columna principal -->
+        <div class="lg:col-span-7 space-y-8">
+          <div class="glass rounded-2xl p-8">
+            <h2 class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-4">
+              [CONTEXTO]
+            </h2>
+            <p class="text-niebla/90 font-product leading-relaxed">
+              {track.details.narrative}
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-8">
+            <h2 class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-6">
+              [DESAFÍOS]
+            </h2>
+            <ul class="space-y-4">
+              {track.details.challenges.map((challenge, i) => (
+                <li class="flex gap-4">
+                  <span class="font-mono text-xs text-manantial/50 mt-0.5 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p class="text-niebla/80 font-product text-sm leading-relaxed">
+                    {challenge}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar — tech stack + entregable -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass rounded-2xl p-8">
+            <h2 class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-6">
+              [STACK SUGERIDO]
+            </h2>
+            <ul class="space-y-3">
+              {track.details.techStack.map((tech) => (
+                <li class="flex items-start gap-3">
+                  <span class="text-manantial text-xs mt-1">▸</span>
+                  <span class="text-musgo font-product text-sm">{tech}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="glass-elevated rounded-2xl p-8 border-manantial/20">
+            <h2 class="font-mono text-[10px] tracking-[0.3em] uppercase text-resina/70 mb-4">
+              [ENTREGABLE]
+            </h2>
+            <p class="text-niebla/90 font-product text-sm leading-relaxed">
+              {track.details.deliverable}
+            </p>
+          </div>
+
+          <a
+            href="/#registro"
+            class="block text-center font-product text-sm font-medium px-6 py-4 bg-manantial/10 text-manantial border border-manantial/20 rounded-xl hover:bg-manantial/20 transition-colors duration-200"
+          >
+            Registrarse en este Track →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

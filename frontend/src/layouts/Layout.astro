@@ -1,12 +1,17 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar";
 import HeroIntro from "../components/HeroIntro";
 
 interface Props {
   title?: string;
+  showIntro?: boolean;
 }
 
-const { title = "AMANAL // 2026 — Hackathon de Tecnología Líquida" } = Astro.props;
+const {
+  title = "AMANAL // 2026 — Hackathon de Tecnología Líquida",
+  showIntro = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,14 +24,15 @@ const { title = "AMANAL // 2026 — Hackathon de Tecnología Líquida" } = Astro
       content="Hackathon de 48 horas para la resiliencia de Chapultepec. 14-16 Agosto 2026, Complejo Cultural de Los Pinos."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ViewTransitions />
     <title>{title}</title>
   </head>
   <body>
     <!-- Textura de ruido sutil sobre todo el sitio -->
     <div class="noise" aria-hidden="true"></div>
 
-    <HeroIntro client:load />
-    <Navbar client:load />
+    {showIntro && <HeroIntro client:load />}
+    <Navbar client:load transition:persist />
     <slot />
 
     <style>
