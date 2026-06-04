@@ -1,7 +1,7 @@
 ---
 /**
  * SECCIÓN 2 — Los Tres Tracks
- * Layout asimétrico / Bento Grid con View Transitions
+ * Layout asimétrico / Bento Grid con View Transitions + StarBorder hover
  */
 import { tracks } from "../data/tracks";
 ---
@@ -24,97 +24,106 @@ import { tracks } from "../data/tracks";
       <!-- Track 1 — ocupa más espacio -->
       <a
         href={`/tracks/${tracks[0].id}`}
-        class="md:col-span-7 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500 block cursor-pointer no-underline"
+        class="md:col-span-7 star-border block no-underline"
         style={`view-transition-name: track-${tracks[0].id}`}
       >
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
-            {tracks[0].tag}
-          </span>
-          <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
-            [EXPLORAR →]
-          </span>
+        <div class="star-glow"></div>
+        <div class="star-inner glass rounded-2xl p-8 md:p-10 h-full transition-colors duration-500 bg-obsidiana">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+              {tracks[0].tag}
+            </span>
+            <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
+              [EXPLORAR →]
+            </span>
+          </div>
+          <h3
+            class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
+            style={`view-transition-name: track-title-${tracks[0].id}`}
+          >
+            {tracks[0].title}
+          </h3>
+          <p
+            class="text-resina text-sm font-product font-medium mb-4"
+            style={`view-transition-name: track-focus-${tracks[0].id}`}
+          >
+            {tracks[0].focus}
+          </p>
+          <p class="text-musgo font-product text-sm leading-relaxed">
+            {tracks[0].description}
+          </p>
         </div>
-        <h3
-          class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
-          style={`view-transition-name: track-title-${tracks[0].id}`}
-        >
-          {tracks[0].title}
-        </h3>
-        <p
-          class="text-resina text-sm font-product font-medium mb-4"
-          style={`view-transition-name: track-focus-${tracks[0].id}`}
-        >
-          {tracks[0].focus}
-        </p>
-        <p class="text-musgo font-product text-sm leading-relaxed">
-          {tracks[0].description}
-        </p>
       </a>
 
       <!-- Track 2 — más compacto -->
       <a
         href={`/tracks/${tracks[1].id}`}
-        class="md:col-span-5 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500 block cursor-pointer no-underline"
+        class="md:col-span-5 star-border block no-underline"
         style={`view-transition-name: track-${tracks[1].id}`}
       >
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
-            {tracks[1].tag}
-          </span>
-          <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
-            [EXPLORAR →]
-          </span>
+        <div class="star-glow"></div>
+        <div class="star-inner glass rounded-2xl p-8 md:p-10 h-full transition-colors duration-500 bg-obsidiana">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+              {tracks[1].tag}
+            </span>
+            <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
+              [EXPLORAR →]
+            </span>
+          </div>
+          <h3
+            class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
+            style={`view-transition-name: track-title-${tracks[1].id}`}
+          >
+            {tracks[1].title}
+          </h3>
+          <p
+            class="text-resina text-sm font-product font-medium mb-4"
+            style={`view-transition-name: track-focus-${tracks[1].id}`}
+          >
+            {tracks[1].focus}
+          </p>
+          <p class="text-musgo font-product text-sm leading-relaxed">
+            {tracks[1].description}
+          </p>
         </div>
-        <h3
-          class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
-          style={`view-transition-name: track-title-${tracks[1].id}`}
-        >
-          {tracks[1].title}
-        </h3>
-        <p
-          class="text-resina text-sm font-product font-medium mb-4"
-          style={`view-transition-name: track-focus-${tracks[1].id}`}
-        >
-          {tracks[1].focus}
-        </p>
-        <p class="text-musgo font-product text-sm leading-relaxed">
-          {tracks[1].description}
-        </p>
       </a>
 
       <!-- Track 3 — ancho completo -->
       <a
         href={`/tracks/${tracks[2].id}`}
-        class="md:col-span-12 glass rounded-2xl p-8 md:p-10 group hover:border-manantial/30 transition-colors duration-500 block cursor-pointer no-underline"
+        class="md:col-span-12 star-border block no-underline"
         style={`view-transition-name: track-${tracks[2].id}`}
       >
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
-            {tracks[2].tag}
-          </span>
-          <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
-            [EXPLORAR →]
-          </span>
-        </div>
-        <div class="md:flex md:items-start md:gap-12">
-          <div class="md:flex-1">
-            <h3
-              class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
-              style={`view-transition-name: track-title-${tracks[2].id}`}
-            >
-              {tracks[2].title}
-            </h3>
-            <p
-              class="text-resina text-sm font-product font-medium mb-4 md:mb-0"
-              style={`view-transition-name: track-focus-${tracks[2].id}`}
-            >
-              {tracks[2].focus}
+        <div class="star-glow"></div>
+        <div class="star-inner glass rounded-2xl p-8 md:p-10 h-full transition-colors duration-500 bg-obsidiana">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-manantial text-xs tracking-[0.3em] uppercase font-product font-medium">
+              {tracks[2].tag}
+            </span>
+            <span class="text-musgo/40 text-xs font-mono tracking-wider group-hover:text-manantial/60 transition-colors duration-300">
+              [EXPLORAR →]
+            </span>
+          </div>
+          <div class="md:flex md:items-start md:gap-12">
+            <div class="md:flex-1">
+              <h3
+                class="font-makes font-bold text-2xl md:text-3xl text-niebla mb-2"
+                style={`view-transition-name: track-title-${tracks[2].id}`}
+              >
+                {tracks[2].title}
+              </h3>
+              <p
+                class="text-resina text-sm font-product font-medium mb-4 md:mb-0"
+                style={`view-transition-name: track-focus-${tracks[2].id}`}
+              >
+                {tracks[2].focus}
+              </p>
+            </div>
+            <p class="text-musgo font-product text-sm leading-relaxed md:flex-1">
+              {tracks[2].description}
             </p>
           </div>
-          <p class="text-musgo font-product text-sm leading-relaxed md:flex-1">
-            {tracks[2].description}
-          </p>
         </div>
       </a>
     </div>

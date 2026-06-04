@@ -183,6 +183,53 @@
 }
 
 /* ══════════════════════════════════════════
+   Star Border — hover effect on track cards
+   ══════════════════════════════════════════ */
+
+.star-border {
+  position: relative;
+  display: block;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1px;
+}
+
+.star-border .star-glow {
+  position: absolute;
+  inset: -100%;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--accent-manantial) 10%,
+    transparent 20%,
+    transparent 100%
+  );
+  animation: star-rotate 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.star-border:hover .star-glow {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.star-border .star-inner {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 1px);
+}
+
+@keyframes star-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ══════════════════════════════════════════
    View Transitions — Track expand
    ══════════════════════════════════════════ */
 
