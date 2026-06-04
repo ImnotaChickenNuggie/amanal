@@ -118,13 +118,17 @@
     outline-color: var(--ring);
   }
   .maplibregl-popup-content {
-    background: transparent !important;
+    background: rgba(19, 26, 30, 0.15) !important;
     box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+    padding: 4px !important;
+    border-radius: 12px !important;
+    border: none !important;
   }
   .maplibregl-popup-tip {
     display: none !important;
+  }
+  .maplibregl-popup {
+    background: transparent !important;
   }
 }
 
@@ -165,4 +169,236 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent-manantial), transparent);
   }
+
+  /* Partners — logos monocromáticos */
+  .partner-logos .logoloop__item img {
+    filter: grayscale(100%) brightness(0.6) contrast(1.2) invert(0.85);
+    opacity: 0.5;
+    transition: opacity 0.4s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .partner-logos .logoloop__item:hover img {
+    opacity: 0.85;
+  }
+}
+
+/* ══════════════════════════════════════════
+   Star Border — hover effect on track cards
+   ══════════════════════════════════════════ */
+
+.star-border {
+  position: relative;
+  display: block;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1px;
+}
+
+.star-border .star-glow {
+  position: absolute;
+  inset: -100%;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--accent-manantial) 10%,
+    transparent 20%,
+    transparent 100%
+  );
+  animation: star-rotate 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.star-border:hover .star-glow {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.star-border .star-inner {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 1px);
+}
+
+@keyframes star-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ══════════════════════════════════════════
+   Pass Card — Holographic Access Credential
+   ══════════════════════════════════════════ */
+
+.pass-wrapper {
+  perspective: 500px;
+  transform: translate3d(0, 0, 0.1px);
+  position: relative;
+  touch-action: none;
+  --holo-1: #5ec4b6;
+  --holo-2: #7dd8cc;
+  --holo-3: #c4a24e;
+  --holo-4: #d45a3a;
+  --holo-5: #5ec4b6;
+  --holo-6: #7dd8cc;
+  --card-opacity: 0;
+}
+
+.pass-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    var(--glow-color, rgba(94, 196, 182, 0.67)) 0%,
+    transparent 50%
+  );
+  filter: blur(50px) saturate(1.1);
+  opacity: calc(0.7 * var(--card-opacity));
+  transition: opacity 200ms ease;
+}
+
+.pass-wrapper:hover,
+.pass-wrapper.active {
+  --card-opacity: 1;
+}
+
+.pass-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.pass-card {
+  display: grid;
+  aspect-ratio: 0.65;
+  max-height: 540px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(10, 13, 15, 0.9);
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.8s ease;
+  backface-visibility: hidden;
+  box-shadow: rgba(0, 0, 0, 0.6) calc((var(--pointer-from-left, 0.5) * 10px) - 3px)
+    calc((var(--pointer-from-top, 0.5) * 20px) - 6px) 20px -5px;
+}
+
+.pass-card > * {
+  grid-area: 1 / -1;
+  border-radius: 24px;
+}
+
+.pass-shell:hover .pass-card,
+.pass-shell.active .pass-card {
+  transition: none;
+  transform: translateZ(0) rotateX(var(--rotate-y, 0deg)) rotateY(var(--rotate-x, 0deg));
+}
+
+.pass-shell.entering .pass-card {
+  transition: transform 180ms ease-out;
+}
+
+.pass-inside {
+  inset: 0;
+  position: absolute;
+  border-radius: 24px;
+  background-image: linear-gradient(145deg, rgba(28, 36, 40, 0.8) 0%, rgba(94, 196, 182, 0.05) 100%);
+  background-color: rgba(19, 26, 30, 0.95);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pass-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  filter: brightness(0.5) contrast(1.5) saturate(0.3) opacity(0.4);
+  transition: filter 0.8s ease;
+  background-image: repeating-linear-gradient(
+      0deg,
+      var(--holo-1) 14%,
+      var(--holo-2) 28%,
+      var(--holo-3) 42%,
+      var(--holo-4) 57%,
+      var(--holo-5) 71%,
+      var(--holo-6) 85%,
+      var(--holo-1) 100%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      #0a0d0f 0%,
+      hsl(168, 10%, 50%) 3.8%,
+      hsl(168, 29%, 56%) 4.5%,
+      hsl(168, 10%, 50%) 5.2%,
+      #0a0d0f 10%,
+      #0a0d0f 12%
+    ),
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+      hsla(0, 0%, 0%, 0.1) 12%,
+      hsla(0, 0%, 0%, 0.15) 20%,
+      hsla(0, 0%, 0%, 0.25) 120%
+    );
+  background-position: 0 var(--background-y, 50%), var(--background-x, 50%) var(--background-y, 50%),
+    center;
+  background-blend-mode: color, hard-light;
+  background-size: 500% 500%, 300% 300%, 200% 200%;
+}
+
+.pass-shell:hover .pass-shine,
+.pass-shell.active .pass-shine {
+  filter: brightness(0.7) contrast(1.8) saturate(0.5);
+}
+
+.pass-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(
+    farthest-corner circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    hsla(168, 25%, 80%, 0.15) 10%,
+    transparent 80%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pass-shell:hover .pass-glare,
+.pass-shell.active .pass-glare {
+  opacity: 1;
+}
+
+.pass-content {
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .pass-card {
+    max-height: 460px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   View Transitions — Track expand
+   ══════════════════════════════════════════ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -1,88 +1,110 @@
 ---
 /**
  * SECCIÓN 1 — El Inicio (Hero)
- * Efecto de entrada con Framer Motion se aplica desde el wrapper en index.astro
+ * Orb WebGL como fondo interactivo + layout disruptivo
  */
+import HeroOrb from "./HeroOrb";
 ---
 
 <section
   id="inicio"
   class="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden"
 >
-  <!-- Gradiente radial de fondo -->
+  <!-- Orb WebGL — fondo interactivo -->
+  <div class="absolute inset-0 z-0 opacity-60" data-hero-reveal>
+    <HeroOrb client:idle />
+  </div>
+
+  <!-- Gradiente superior para legibilidad -->
   <div
-    class="absolute inset-0 pointer-events-none"
+    class="absolute inset-0 pointer-events-none z-[1]"
     aria-hidden="true"
-    style="background: radial-gradient(ellipse 60% 40% at 50% 40%, rgba(94,196,182,0.06) 0%, transparent 70%);"
+    style="background: radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #0a0d0f 75%);"
   >
   </div>
 
-  <div class="relative z-10 max-w-4xl mx-auto text-center">
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
     <!-- Marcador de contexto -->
-    <p
-      class="inline-block text-xs tracking-[0.35em] uppercase text-musgo font-product font-medium mb-8 px-4 py-2 glass rounded-full"
-    >
-      Protocolo de Innovación Abierta // CDMX
-    </p>
+    <div class="inline-flex items-center gap-3 mb-10" data-hero-reveal>
+      <span class="h-px w-8 bg-manantial/40"></span>
+      <p
+        class="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-manantial font-product font-medium"
+      >
+        Protocolo de Innovación Abierta // CDMX
+      </p>
+      <span class="h-px w-8 bg-manantial/40"></span>
+    </div>
 
     <!-- H1 -->
-    <h1 class="font-makes font-bold text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] mb-6">
+    <h1 class="font-makes font-bold text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-[0.9] mb-4" data-hero-reveal>
       <span class="text-gradient-manantial">AMANAL</span>
-      <span class="text-raiz mx-2 md:mx-4">//</span>
-      <span class="text-niebla">2026</span>
     </h1>
 
+    <!-- Año separado — tipografía monoespaciada -->
+    <div class="flex items-center justify-center gap-4 mb-10" data-hero-reveal>
+      <span class="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-raiz"></span>
+      <span class="font-mono text-2xl sm:text-3xl md:text-4xl text-musgo tracking-[0.5em]">
+        2026
+      </span>
+      <span class="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-raiz"></span>
+    </div>
+
     <!-- Subtítulo -->
-    <p class="text-lg sm:text-xl md:text-2xl text-musgo font-product max-w-2xl mx-auto mb-10">
-      Hackathon de Tecnología Líquida para la Resiliencia de Chapultepec.
+    <p class="text-lg sm:text-xl md:text-2xl text-niebla/90 font-product max-w-2xl mx-auto mb-8 leading-relaxed" data-hero-reveal>
+      Hackathon de <span class="text-manantial font-medium">Tecnología</span> para la Resiliencia de Chapultepec.
     </p>
 
     <!-- Línea decorativa -->
-    <div class="line-manantial w-48 mx-auto mb-10"></div>
+    <div class="line-manantial w-32 mx-auto mb-10" data-hero-reveal></div>
 
     <!-- Sinopsis -->
-    <p class="text-niebla/80 font-product text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-16">
+    <p class="text-niebla/70 font-product text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-16" data-hero-reveal>
       Hace siglos, los manantiales de Chapultepec
-      <span class="text-resina">(Amanalli)</span> dieron vida a la gran
+      <span class="text-resina font-medium">(Amanalli)</span> dieron vida a la gran
       Tenochtitlan a través de sus acueductos. Hoy, convocamos a las mentes más
       brillantes en desarrollo, diseño y ciencia de datos para canalizar un
       nuevo flujo: el de la tecnología abierta, con el fin de preservar y
       optimizar el pulmón más importante de la Ciudad de México.
     </p>
 
-    <!-- Datos rápidos -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-manantial text-sm tracking-widest uppercase font-product mb-2">
-          Sede
+    <!-- Datos rápidos — con bordes más definidos -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto" data-hero-reveal>
+      <div class="glass rounded-xl p-5 text-center group hover:border-manantial/30 transition-colors duration-300">
+        <div class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-2">
+          [SEDE]
         </div>
         <p class="text-niebla font-product text-sm">
           Complejo Cultural de Los Pinos, Sección I
         </p>
       </div>
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-manantial text-sm tracking-widest uppercase font-product mb-2">
-          Cronograma
+      <div class="glass rounded-xl p-5 text-center group hover:border-manantial/30 transition-colors duration-300">
+        <div class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-2">
+          [CRONOGRAMA]
         </div>
         <p class="text-niebla font-product text-sm">
-          14 al 16 de Agosto, 2026
+          14 — 16 Agosto, 2026
         </p>
       </div>
-      <div class="glass rounded-xl p-5 text-center">
-        <div class="text-manantial text-sm tracking-widest uppercase font-product mb-2">
-          Dotación
+      <div class="glass rounded-xl p-5 text-center group hover:border-manantial/30 transition-colors duration-300">
+        <div class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-2">
+          [DOTACIÓN]
         </div>
         <p class="text-niebla font-product text-sm">
-          <span class="text-resina font-medium">$150,000 MXN</span> al proyecto
-          más disruptivo
+          <span class="text-resina font-mono font-medium">$150,000 MXN</span>
         </p>
       </div>
     </div>
   </div>
 
   <!-- Indicador de scroll -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-    <span class="text-musgo text-xs tracking-widest uppercase font-product">Scroll</span>
-    <div class="w-px h-8 bg-gradient-to-b from-manantial/60 to-transparent"></div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10" data-hero-reveal>
+    <span class="text-musgo/60 text-[10px] tracking-[0.4em] uppercase font-mono">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-manantial/40 to-transparent"></div>
   </div>
 </section>
+
+<style>
+  [data-hero-reveal] {
+    opacity: 0;
+  }
+</style>
