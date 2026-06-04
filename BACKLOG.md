@@ -1,0 +1,78 @@
+# BACKLOG — AMANAL // 2026
+
+## Backend
+
+- [x] Inicializar monorepo con workspaces (root `package.json`)
+- [x] Configurar Biome (formatter + linter) a nivel monorepo
+- [x] Configurar Husky + Commitlint (conventional commits)
+- [x] Crear `.gitignore` global
+- [x] Configurar TypeScript (`tsconfig.json`)
+- [x] Definir modelo `Registration` en Prisma (uuid, name, email, phone, section, message)
+- [x] Validacion de variables de entorno con Zod (`src/config/env.ts`)
+- [x] Prisma client singleton (`src/config/db.ts`)
+- [x] Middleware de validacion generico con Zod (`validate.middleware.ts`)
+- [x] Middleware de error global con clase `AppError` (`error.middleware.ts`)
+- [x] Controller de registro con schemas Zod (`register.controller.ts`)
+- [x] `POST /api/v1/register` — crea participante, retorna UUID
+- [x] `GET /api/v1/register/:uuid` — datos del participante + countdown al hackathon
+- [x] `GET /api/v1/health` — health check
+- [x] CORS configurado para frontend local (`localhost:4321`)
+- [x] Conectar base de datos MySQL en Railway (DATABASE_URL con MYSQL_PUBLIC_URL)
+- [x] Ejecutar `prisma db push` para sincronizar schema con Railway
+- [x] Configurar `dotenv/config` para carga de variables de entorno
+- [x] Mover `db.ts` y `env.ts` de `prisma/config/` a `src/config/` (fix rootDir)
+- [x] `GET /api/v1/health` — health check con validacion de conexion a base de datos
+- [x] `GET /api/v1/register/search?email=` — búsqueda de participante por correo electrónico
+
+## Frontend
+
+- [x] Crear estructura de carpetas (components, layouts, pages, public)
+- [x] Configurar Astro + React Islands + Tailwind CSS
+- [x] Configurar `tsconfig.json` (strict + JSX React)
+- [x] Definir paleta "Manantial Nocturno" en CSS variables y Tailwind tokens
+- [x] Cargar tipografias: Makes (titulos) y Product Sans (cuerpo) via `@font-face`
+- [x] Crear `global.css` con base styles, scrollbar, selection, utilities (`.glass`, `.text-gradient-*`, `.line-manantial`)
+- [x] `Layout.astro` — HTML base + textura de ruido SVG
+- [x] `Hero.astro` — Seccion 1: marcador de contexto, H1 con gradiente, sinopsis, grid de datos rapidos
+- [x] `Tracks.astro` — Seccion 2: bento grid asimetrico (7/5/12 cols) con 3 tracks
+- [x] `Gallery.astro` — Bento grid de imagenes con filtro grayscale -> color al hover
+- [x] `RegistrationZone.tsx` — Seccion 3: Isla React con temporizador 5min + formulario + estados (expired/success/error)
+- [x] `index.astro` — Composicion de todas las secciones + footer
+- [x] Favicon SVG
+- [x] Integrar shadcn/ui (path aliases, tokens mapeados a paleta Manantial Nocturno)
+- [x] Instalar MapCN (MapLibre GL) via shadcn
+- [x] `SedeMap.tsx` — Mapa interactivo del Complejo Cultural de Los Pinos con 3 markers + rich popups (Manantiales de Datos, El Gran Acueducto, Memorias del Ahuehuete)
+- [x] Excluir `frontend/src/components/ui` de Biome (archivos generados por shadcn/mapcn)
+- [x] `PhoneInput` — componente con `react-phone-number-input`, selector de bandera, default Mexico (MX)
+- [x] `Select` — custom select estilo shadcn con dropdown animado y checkmark
+- [x] Validaciones en tiempo real en formulario de registro (nombre, email, telefono 10 digitos, track, manifiesto)
+- [x] `Partners.tsx` — seccion de partners con LogoLoop animado (scroll infinito horizontal, logos monocromáticos)
+- [x] `Orb.tsx` — componente WebGL con shaders GLSL (ogl), efecto esférico interactivo con mouse
+- [x] `HeroOrb.tsx` — wrapper del Orb con hue manantial (165) como fondo del Hero
+- [x] `Hero.astro` — rediseño con Orb WebGL de fondo, gradiente radial, tipografía a 14rem, labels terminales
+- [x] `Navbar.tsx` — navbar responsive con glass-blur on scroll, IntersectionObserver para sección activa, hamburger animado a X
+- [x] `HeroIntro.tsx` — animación de intro con GSAP: Orb pulsa, explota, funde a negro y revela Hero con stagger fade-in
+- [x] Instalar GSAP + @gsap/react para animaciones
+- [x] Habilitar Astro View Transitions (`<ViewTransitions />` en Layout)
+- [x] `Tracks.astro` — cards convertidas en links con `view-transition-name` para expansión animada
+- [x] `/tracks/[id].astro` — páginas de detalle por track con narrativa, desafíos, stack sugerido y entregable
+- [x] `src/data/tracks.ts` — datos centralizados de tracks con información expandida
+- [x] `HeroOrb.tsx` — fix centrado en mobile (sticky top-0 h-screen)
+- [x] `SedeMap.tsx` — fix popups: eliminado cuadro blanco nativo de MapLibre (estilos inline on open), título a 1.78rem
+- [x] Star Border — efecto conic-gradient rotativo en borde de cards de tracks al hover (color manantial)
+- [x] Instalar skills GSAP (core, react, scrolltrigger, timeline, plugins, performance, frameworks, utils)
+- [x] `PassCard.tsx` — card holográfica de pase de acceso con tilt 3D, glow por track, efecto shine iridiscente (adaptado de ProfileCard/reactbits)
+- [x] `AccessPass.tsx` — página de consulta de pase con búsqueda por email, estados reveal/not-found/error, verificación de inscripciones abiertas
+- [x] `/pase/index.astro` — ruta `/pase` con AccessPass como isla React
+- [x] `PassLookup.tsx` — sección en landing "¿Ya te registraste?" con búsqueda por email y redirección a `/pase?id=uuid`
+- [x] `RegistrationZone.tsx` — botón "Ver tu Pase de Acceso" post-registro exitoso con link a `/pase?id=uuid`
+- [x] CSS holográfico en `global.css` — estilos pass-wrapper, pass-shine, pass-glare, pass-glow con custom properties para tilt interactivo
+- [x] `Navbar.tsx` — fix sección activa: Inicio al top, Sede en mapa, agregadas secciones Pase y Registro al observer
+- [x] `Navbar.tsx` — reorden: Inicio, Tracks, Sede, Pase, Registro (CTA al final)
+- [x] `index.astro` — reorden secciones: PassLookup antes de RegistrationZone
+- [x] `PassLookup.tsx` — validaciones en tiempo real del campo email (blur + onChange, borde rojo, mensaje de error, botón bloqueado)
+- [x] `index.astro` — footer con redes sociales (TikTok, Instagram, Facebook, GitHub), términos, privacidad y copyright
+- [x] `PassCard.tsx` — QR code generado con UUID via `qrcode.react`
+- [x] Agregar imagenes de galeria (`public/gallery/*.webp`)
+- [x] Animaciones de scroll con GSAP ScrollTrigger (secciones, cards, galería)
+- [x] Generacion de QR con UUID post-registro

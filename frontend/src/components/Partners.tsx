@@ -23,7 +23,7 @@ export default function Partners() {
         <p className="text-manantial text-xs tracking-[0.35em] uppercase font-product mb-4">
           Red de Aliados
         </p>
-        <h2 className="font-makes font-bold text-3xl sm:text-4xl md:text-5xl text-niebla mb-4">
+        <h2 className="font-makes font-bold text-3xl sm:text-4xl md:text-7xl text-niebla mb-4">
           Nodos del Acueducto
         </h2>
         <p className="text-musgo font-product text-sm max-w-md mx-auto leading-relaxed">

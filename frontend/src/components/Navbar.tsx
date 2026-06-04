@@ -1,18 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#tracks", label: "Tracks" },
   { href: "#sede", label: "Sede" },
+  { href: "#pase", label: "Pase" },
+  { href: "#registro", label: "Registro" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
+  const visibleSections = useRef(new Set<string>());
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      // Force "inicio" when at the very top
+      if (window.scrollY < 100) {
+        setActiveSection("inicio");
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -21,15 +30,27 @@ export default function Navbar() {
   // Intersection observer for active section tracking
   useEffect(() => {
     const ids = NAV_LINKS.map((l) => l.href.slice(1));
+    const sectionOrder = ids;
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            visibleSections.current.add(entry.target.id);
+          } else {
+            visibleSections.current.delete(entry.target.id);
+          }
+        }
+        // Pick the first visible section in DOM order
+        if (window.scrollY < 100) return; // let scroll handler handle top
+        for (const id of sectionOrder) {
+          if (visibleSections.current.has(id)) {
+            setActiveSection(id);
+            return;
           }
         }
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+      { rootMargin: "-20% 0px -35% 0px", threshold: 0 },
     );
 
     for (const id of ids) {
@@ -78,37 +99,44 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative px-3 py-1.5 font-mono text-xs tracking-widest uppercase transition-colors duration-200 ${
-                  activeSection === link.href.slice(1)
-                    ? "text-manantial"
-                    : "text-musgo hover:text-niebla"
-                }`}
-              >
-                {activeSection === link.href.slice(1) && (
-                  <span className="absolute bottom-0 left-3 right-3 h-px bg-manantial" />
-                )}
-                {link.label}
-              </a>
-            </li>
-          ))}
-          <li className="ml-3">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileOpen(false);
-                const el = document.querySelector("#registro");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="font-product text-xs font-medium px-4 py-2 bg-manantial/10 text-manantial border border-manantial/20 rounded-lg hover:bg-manantial/20 transition-colors duration-200 cursor-pointer"
-            >
-              Registrarse
-            </button>
-          </li>
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.href.slice(1);
+            const isRegistro = link.href === "#registro";
+            // Registro gets a CTA-style treatment
+            if (isRegistro) {
+              return (
+                <li key={link.href} className="ml-3">
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`font-product text-xs font-medium px-4 py-2 rounded-lg transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-manantial/20 text-manantial border border-manantial/30"
+                        : "bg-manantial/10 text-manantial border border-manantial/20 hover:bg-manantial/20"
+                    }`}
+                  >
+                    Registrarse
+                  </a>
+                </li>
+              );
+            }
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`relative px-3 py-1.5 font-mono text-xs tracking-widest uppercase transition-colors duration-200 ${
+                    isActive ? "text-manantial" : "text-musgo hover:text-niebla"
+                  }`}
+                >
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-manantial" />
+                  )}
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile hamburger */}
@@ -145,34 +173,42 @@ export default function Navbar() {
       >
         <div className="px-6 pb-6 pt-4 bg-abismo/95 backdrop-blur-xl border-t border-raiz/30">
           <ul className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`block px-4 py-3 rounded-lg font-mono text-xs tracking-widest uppercase transition-colors duration-200 ${
-                    activeSection === link.href.slice(1)
-                      ? "text-manantial bg-manantial/5"
-                      : "text-musgo hover:text-niebla hover:bg-corteza/30"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <li className="mt-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileOpen(false);
-                  const el = document.querySelector("#registro");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="block w-full text-center font-product text-xs font-medium px-4 py-3 bg-manantial/10 text-manantial border border-manantial/20 rounded-lg cursor-pointer"
-              >
-                Registrarse
-              </button>
-            </li>
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              const isRegistro = link.href === "#registro";
+              if (isRegistro) {
+                return (
+                  <li key={link.href} className="mt-2">
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className={`block w-full text-center font-product text-xs font-medium px-4 py-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+                        isActive
+                          ? "bg-manantial/20 text-manantial border border-manantial/30"
+                          : "bg-manantial/10 text-manantial border border-manantial/20"
+                      }`}
+                    >
+                      Registrarse
+                    </a>
+                  </li>
+                );
+              }
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`block px-4 py-3 rounded-lg font-mono text-xs tracking-widest uppercase transition-colors duration-200 ${
+                      isActive
+                        ? "text-manantial bg-manantial/5"
+                        : "text-musgo hover:text-niebla hover:bg-corteza/30"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
