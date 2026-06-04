@@ -9,4 +9,9 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
+  vite: {
+    preview: {
+      allowedHosts: true,
+    },
+  },
 });
