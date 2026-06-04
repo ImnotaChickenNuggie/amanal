@@ -29,6 +29,6 @@
     }
   },
   "files": {
-    "ignore": ["node_modules", "dist", ".astro", "*.astro", "frontend/src/components/ui"]
+    "ignore": ["node_modules", "dist", ".astro", "*.astro", "frontend/src/components/ui", ".claude"]
   }
 }

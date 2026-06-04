@@ -8,7 +8,11 @@ import registerRoutes from "./routes/register.routes.js";
 
 const app = express();
 
-app.use(cors({ origin: env.FRONTEND_URL }));
+app.use(
+  cors({
+    origin: env.FRONTEND_URL.split(",").map((u) => u.trim()),
+  }),
+);
 app.use(express.json());
 
 app.use("/api/v1", healthRoutes);
