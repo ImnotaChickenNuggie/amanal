@@ -569,6 +569,24 @@ function MarkerPopup({
     popup.setDOMContent(container);
     marker.setPopup(popup);
 
+    // Strip native MapLibre popup styles after it opens
+    const onOpen = () => {
+      const el = popup.getElement();
+      if (el) {
+        const content = el.querySelector(".maplibregl-popup-content") as HTMLElement | null;
+        if (content) {
+          content.style.background = "transparent";
+          content.style.boxShadow = "none";
+          content.style.padding = "0";
+          content.style.border = "none";
+          content.style.borderRadius = "0";
+        }
+        const tip = el.querySelector(".maplibregl-popup-tip") as HTMLElement | null;
+        if (tip) tip.style.display = "none";
+      }
+    };
+    popup.on("open", onOpen);
+
     return () => {
       marker.setPopup(null);
     };

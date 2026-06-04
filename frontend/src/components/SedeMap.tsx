@@ -12,27 +12,27 @@ const MARKERS = [
     title: "Manantiales de Datos",
     focus: "Eco-monitoreo e Infraestructura Hidrica",
     description: "Zona de sensores IoT y estaciones de monitoreo del ciclo hidrico del bosque.",
-    longitude: -99.1978,
-    latitude: 19.4208,
-    color: "#5ec4b6",
+    longitude: -99.1913,
+    latitude: 19.4157,
+    color: "#23ace2",
   },
   {
     id: "el-gran-acueducto",
     title: "El Gran Acueducto",
     focus: "Movilidad e Interconectividad Sustentable",
     description: "Hub de conectividad y punto de partida para las rutas de transporte limpio.",
-    longitude: -99.1945,
-    latitude: 19.4185,
-    color: "#c4a24e",
+    longitude: -99.1916,
+    latitude: 19.4167,
+    color: "#d4a93f",
   },
   {
     id: "memorias-del-ahuehuete",
     title: "Memorias del Ahuehuete",
     focus: "Cultura y Patrimonio Digitalizado",
     description: "Estacion de realidad aumentada junto a los ahuehuetes centenarios del complejo.",
-    longitude: -99.1912,
-    latitude: 19.4197,
-    color: "#7dd8cc",
+    longitude: -99.192,
+    latitude: 19.4158,
+    color: "#2b9486",
   },
 ] as const;
 
@@ -53,7 +53,7 @@ export default function SedeMap() {
         </div>
 
         <div className="rounded-2xl overflow-hidden border border-raiz h-[420px] md:h-[520px]">
-          <MapView theme="dark" center={[-99.1945, 19.4197]} zoom={15.2} pitch={30}>
+          <MapView theme="dark" center={[-99.1938, 19.4162]} zoom={15.2} pitch={30}>
             <MapControls showZoom showCompass />
 
             {MARKERS.map((marker) => (
@@ -71,7 +71,7 @@ export default function SedeMap() {
                   </div>
                 </MarkerContent>
                 <MarkerPopup
-                  className="w-72 bg-obsidiana/95 backdrop-blur-md border-raiz p-0 overflow-hidden"
+                  className="w-72 bg-obsidiana/95 backdrop-blur-md border-raiz !border-raiz !shadow-none p-0 overflow-hidden"
                   closeButton
                 >
                   <div className="p-4">
@@ -79,7 +79,10 @@ export default function SedeMap() {
                       className="h-1 w-12 rounded-full mb-3"
                       style={{ backgroundColor: marker.color }}
                     />
-                    <h3 className="font-makes font-bold text-base text-niebla mb-1">
+                    <h3
+                      className="font-makes font-bold text-niebla mb-1"
+                      style={{ fontSize: "1.78rem" }}
+                    >
                       {marker.title}
                     </h3>
                     <p

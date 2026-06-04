@@ -118,13 +118,17 @@
     outline-color: var(--ring);
   }
   .maplibregl-popup-content {
-    background: transparent !important;
+    background: rgba(19, 26, 30, 0.15) !important;
     box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+    padding: 4px !important;
+    border-radius: 12px !important;
+    border: none !important;
   }
   .maplibregl-popup-tip {
     display: none !important;
+  }
+  .maplibregl-popup {
+    background: transparent !important;
   }
 }
 
