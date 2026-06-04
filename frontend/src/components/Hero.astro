@@ -11,7 +11,7 @@ import HeroOrb from "./HeroOrb";
   class="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 overflow-hidden"
 >
   <!-- Orb WebGL — fondo interactivo -->
-  <div class="absolute inset-0 z-0 opacity-60">
+  <div class="absolute inset-0 z-0 opacity-60" data-hero-reveal>
     <HeroOrb client:idle />
   </div>
 
@@ -25,7 +25,7 @@ import HeroOrb from "./HeroOrb";
 
   <div class="relative z-10 max-w-5xl mx-auto text-center">
     <!-- Marcador de contexto -->
-    <div class="inline-flex items-center gap-3 mb-10">
+    <div class="inline-flex items-center gap-3 mb-10" data-hero-reveal>
       <span class="h-px w-8 bg-manantial/40"></span>
       <p
         class="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-manantial font-product font-medium"
@@ -36,12 +36,12 @@ import HeroOrb from "./HeroOrb";
     </div>
 
     <!-- H1 -->
-    <h1 class="font-makes font-bold text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-[0.9] mb-4">
+    <h1 class="font-makes font-bold text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-[0.9] mb-4" data-hero-reveal>
       <span class="text-gradient-manantial">AMANAL</span>
     </h1>
 
     <!-- Año separado — tipografía monoespaciada -->
-    <div class="flex items-center justify-center gap-4 mb-10">
+    <div class="flex items-center justify-center gap-4 mb-10" data-hero-reveal>
       <span class="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-raiz"></span>
       <span class="font-mono text-2xl sm:text-3xl md:text-4xl text-musgo tracking-[0.5em]">
         2026
@@ -50,15 +50,15 @@ import HeroOrb from "./HeroOrb";
     </div>
 
     <!-- Subtítulo -->
-    <p class="text-lg sm:text-xl md:text-2xl text-niebla/90 font-product max-w-2xl mx-auto mb-8 leading-relaxed">
+    <p class="text-lg sm:text-xl md:text-2xl text-niebla/90 font-product max-w-2xl mx-auto mb-8 leading-relaxed" data-hero-reveal>
       Hackathon de <span class="text-manantial font-medium">Tecnología</span> para la Resiliencia de Chapultepec.
     </p>
 
     <!-- Línea decorativa -->
-    <div class="line-manantial w-32 mx-auto mb-10"></div>
+    <div class="line-manantial w-32 mx-auto mb-10" data-hero-reveal></div>
 
     <!-- Sinopsis -->
-    <p class="text-niebla/70 font-product text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-16">
+    <p class="text-niebla/70 font-product text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-16" data-hero-reveal>
       Hace siglos, los manantiales de Chapultepec
       <span class="text-resina font-medium">(Amanalli)</span> dieron vida a la gran
       Tenochtitlan a través de sus acueductos. Hoy, convocamos a las mentes más
@@ -68,7 +68,7 @@ import HeroOrb from "./HeroOrb";
     </p>
 
     <!-- Datos rápidos — con bordes más definidos -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto" data-hero-reveal>
       <div class="glass rounded-xl p-5 text-center group hover:border-manantial/30 transition-colors duration-300">
         <div class="font-mono text-[10px] tracking-[0.3em] uppercase text-manantial/70 mb-2">
           [SEDE]
@@ -97,8 +97,14 @@ import HeroOrb from "./HeroOrb";
   </div>
 
   <!-- Indicador de scroll -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10" data-hero-reveal>
     <span class="text-musgo/60 text-[10px] tracking-[0.4em] uppercase font-mono">Scroll</span>
     <div class="w-px h-10 bg-gradient-to-b from-manantial/40 to-transparent"></div>
   </div>
 </section>
+
+<style>
+  [data-hero-reveal] {
+    opacity: 0;
+  }
+</style>
