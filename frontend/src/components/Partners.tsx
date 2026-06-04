@@ -28,7 +28,7 @@ export default function Partners() {
         </h2>
         <p className="text-musgo font-product text-sm max-w-md mx-auto leading-relaxed">
           Instituciones y organizaciones que canalizan recursos hacia la innovación abierta de
-          Chapultepec.
+          Amanal.
         </p>
       </div>
 
