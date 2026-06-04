@@ -271,6 +271,12 @@ export default function RegistrationZone() {
               <code className="block bg-abismo border border-raiz rounded-lg px-6 py-4 font-mono text-resina text-sm break-all">
                 {registrationId}
               </code>
+              <a
+                href={`/pase?id=${registrationId}`}
+                className="inline-block mt-6 px-6 py-3 bg-manantial text-abismo font-product font-medium rounded-lg hover:bg-reflejo transition-colors text-sm"
+              >
+                Ver tu Pase de Acceso
+              </a>
               <p className="text-musgo font-product text-xs mt-4">
                 Guarda este código. Lo necesitarás para acceder al evento.
               </p>
