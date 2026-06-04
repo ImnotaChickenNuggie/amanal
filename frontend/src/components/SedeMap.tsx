@@ -44,7 +44,7 @@ export default function SedeMap() {
           <p className="text-manantial text-xs tracking-[0.35em] uppercase font-product mb-4">
             Coordenadas del Protocolo
           </p>
-          <h2 className="font-makes font-bold text-3xl sm:text-4xl md:text-5xl text-niebla">
+          <h2 className="font-makes font-bold text-3xl sm:text-4xl md:text-7xl text-niebla">
             Complejo Cultural de Los Pinos
           </h2>
           <p className="text-musgo font-product text-sm mt-3 max-w-lg">

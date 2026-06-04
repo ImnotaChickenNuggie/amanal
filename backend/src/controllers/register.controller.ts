@@ -31,6 +31,12 @@ export const getByUuidSchema = z.object({
   }),
 });
 
+export const searchByEmailSchema = z.object({
+  query: z.object({
+    email: z.string().email("Correo electronico invalido"),
+  }),
+});
+
 export async function createRegistration(req: Request, res: Response, next: NextFunction) {
   try {
     const { name, email, phone, section, message } = req.body;
@@ -51,6 +57,31 @@ export async function createRegistration(req: Request, res: Response, next: Next
         name: registration.name,
         email: registration.email,
         section: registration.section,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function searchByEmail(req: Request, res: Response, next: NextFunction) {
+  try {
+    const email = req.query.email as string;
+
+    const registration = await prisma.registration.findUnique({ where: { email } });
+    if (!registration) {
+      throw new AppError("No se encontro un registro con ese correo", 404);
+    }
+
+    res.json({
+      status: "success",
+      data: {
+        id: registration.id,
+        name: registration.name,
+        email: registration.email,
+        phone: registration.phone,
+        section: registration.section,
+        message: registration.message,
       },
     });
   } catch (error) {

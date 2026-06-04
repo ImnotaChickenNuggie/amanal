@@ -201,7 +201,7 @@ export default function AccessPass() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-8 max-w-md mx-auto">
       <div className="text-center">
         <p className="text-manantial text-xs tracking-[0.35em] uppercase font-product mb-3">
-          Consulta tu Credencial
+          Consulta tu Pase
         </p>
         <h1 className="font-makes font-bold text-3xl sm:text-4xl text-niebla mb-3">Pase AMANAL</h1>
         <p className="text-musgo font-product text-sm leading-relaxed">

@@ -1,3 +1,4 @@
+import { QRCodeSVG } from "qrcode.react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 
 /* ── Helpers ────────────────────────────── */
@@ -215,11 +216,14 @@ export default function PassCard({ name, email, section, id }: PassCardProps) {
             {/* Divider */}
             <div className="mx-6 h-px bg-gradient-to-r from-transparent via-raiz to-transparent" />
 
-            {/* Name & Email */}
-            <div className="flex-1 flex flex-col items-center justify-center px-6 py-6">
-              <h2 className="font-makes font-bold text-3xl sm:text-4xl text-niebla text-center mb-2 leading-tight">
+            {/* Name, QR & Email */}
+            <div className="flex-1 flex flex-col items-center justify-center px-6 py-5 gap-4">
+              <h2 className="font-makes font-bold text-3xl sm:text-4xl text-niebla text-center leading-tight">
                 {name}
               </h2>
+              <div className="rounded-lg bg-niebla/95 p-2">
+                <QRCodeSVG value={id} size={80} bgColor="transparent" fgColor="#0a0d0f" level="M" />
+              </div>
               <p className="font-mono text-sm text-musgo">{email}</p>
             </div>
 
