@@ -4,6 +4,7 @@ import Hero from "../components/Hero.astro";
 import Tracks from "../components/Tracks.astro";
 import Gallery from "../components/Gallery.astro";
 import SedeMap from "../components/SedeMap";
+import Partners from "../components/Partners";
 import RegistrationZone from "../components/RegistrationZone";
 import "../styles/global.css";
 ---
@@ -25,6 +26,10 @@ import "../styles/global.css";
     <div class="line-manantial w-full max-w-6xl mx-auto"></div>
 
     <RegistrationZone client:visible />
+
+    <div class="line-manantial w-full max-w-6xl mx-auto"></div>
+
+    <Partners client:visible />
 
     <!-- Footer mínimo -->
     <footer class="px-6 py-12 text-center border-t border-raiz/50">
